@@ -21,8 +21,8 @@ handler.on('ping', function(event) {
 })
 
 handler.on('push', function (event) {
-	console.log('Received a push event for %s to %s',
+	console.log('Received a push event for %s (%d commits)',
 		event.payload.repository.name,
-		event.payload.ref
+		event.payload.commits.length
 	)
 })
