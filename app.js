@@ -25,4 +25,23 @@ handler.on('push', function (event) {
 		event.payload.repository.name,
 		event.payload.commits.length
 	)
+
+	var commits = event.payload.commits
+	for (var i = commits.length - 1; i >= 0; i--) {
+		var commit = commits[i]
+		console.log('"%s"', commit.message)
+		
+		var issues = commit.message.match(/#\d+/g)
+		if (issues != null) {
+			processIssues(commit, issues)
+		}
+	};
 })
+
+function processIssues(commit, issues) {
+	var msg = "Issues mentioned in this commit:\n\n"
+	for (var i = 0; i < issues.length; i++) {
+		msg += "* [Issue " + issues[i] + "](https://bugs.mtasa.com/view.php?id=" + issues[i].slice(1) + ")\n"
+	};
+	console.log(msg)
+}
