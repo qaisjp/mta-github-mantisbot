@@ -1,0 +1,4 @@
+{
+	"secret": "token for the webhook",
+	"oauth_token": "personal access token for your bot account"
+}

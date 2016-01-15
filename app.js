@@ -1,13 +1,12 @@
-var config = JSON.parse(require('fs').readFileSync('config.json',{encoding:'utf8'}))
+var config = JSON.parse(require('fs').readFileSync('config.json', {encoding:'utf8'}))
 
 var GitHubApi = require("github");
 var github = new GitHubApi({
     // required
     version: "3.0.0",
     // optional
-    debug: true,
     protocol: "https",
-    host: "api.github.com", // should be api.github.com for GitHub
+    host: "api.github.com",
     timeout: 5000,
     headers: {
         "user-agent": "github-mantisbot"
@@ -71,10 +70,10 @@ handler.on('push', function (event) {
 				commit_id: commit.id,
 				body: comment
 			}, function(err, res) {
-				// console.log("Error: ", err)
-				// console.log(JSON.stringify(res))
+				if (err) {
+					console.log(JSON.stringify(res))
+				}
 			})
-			// return
 		}
 	};
 })
