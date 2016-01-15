@@ -1,5 +1,5 @@
 {
 	"secret": "token for the webhook",
 	"oauth_token": "personal access token for your bot account",
-	"url": "https://bugs.mtasa.com/view.php?id=""
+	"url": "https://bugs.mtasa.com/view.php?id="
 }
