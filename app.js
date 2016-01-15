@@ -59,7 +59,7 @@ handler.on('push', function (event) {
 			// Build the comment
 			var comment = "Issues mentioned in this commit (" + commit.id + "):\n\n"
 			for (var i = 0; i < issues.length; i++) {
-				comment += "* [Issue " + issues[i] + "](https://bugs.mtasa.com/view.php?id=" + issues[i].slice(1) + ")\n"
+				comment += "* [Issue " + issues[i] + "](" + config.url + issues[i].slice(1) + ")\n"
 			};
 
 			// Create the commit comment
