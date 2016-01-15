@@ -1,0 +1,26 @@
+{
+  "name": "mta-github-bot",
+  "version": "1.0.0",
+  "description": "A bot for GitHub that scans for bug reports mentioned in a commit and provides a link to it.",
+  "main": "app.js",
+  "dependencies": {
+    "github": "^0.2.4",
+    "github-webhook-handler": "^0.5.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qaisjp/github-mantisbot.git"
+  },
+  "keywords": [
+    "github",
+    "bot",
+    "mantis"
+  ],
+  "author": "Qais Patankar <qaisjp@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/qaisjp/github-mantisbot/issues"
+  },
+  "homepage": "https://github.com/qaisjp/github-mantisbot#readme"
+}
