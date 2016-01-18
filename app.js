@@ -54,7 +54,7 @@ handler.on('push', function (event) {
 	var commits = payload.commits
 	for (var c = commits.length - 1; c >= 0; c--) {
 		var commit = commits[c]
-		var issues = commit.message.match(/#\d+/g)
+		var issues = commit.message.match(/#\d+(?=\b|[^A-Za-z\d])/g)
 		if (issues != null) {
 			// Build the comment
 			var comment = "Issues mentioned in this commit (" + commit.id + "):\n\n"
