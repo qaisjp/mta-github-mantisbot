@@ -33,7 +33,7 @@ http.createServer(function (req, res) {
 		res.statusCode = 404
 		res.end('no such location')
 	})
-}).listen(7778)
+}).listen(7777)
 
 
 handler.on('error', function (err) {
@@ -62,7 +62,8 @@ handler.on('push', function (event) {
 				comment += "* [Issue " + issues[i] + "](" + config.url + issues[i].slice(1) + ")\n"
 			};
 
-			comment += "\nIf you'd like to stop receiving notifications from me, please visit [my profile](https://github.com/mantisbot) and block me. Sorry!"
+			// Blocking the user prevents the user from commenting on certain repositories. Not sure about the behaviour with organisations.
+			// comment += "\nIf you'd like to stop receiving notifications from me, please visit [my profile](https://github.com/mantisbot) and block me. Sorry!"
 
 			// Create the commit comment
 			github.repos.createCommitComment({
@@ -73,7 +74,7 @@ handler.on('push', function (event) {
 				body: comment
 			}, function(err, res) {
 				if (err) {
-					console.log(JSON.stringify(res))
+					console.log(err, JSON.stringify(res))
 				}
 			})
 		}
