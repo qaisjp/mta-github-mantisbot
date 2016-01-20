@@ -33,7 +33,7 @@ http.createServer(function (req, res) {
 		res.statusCode = 404
 		res.end('no such location')
 	})
-}).listen(7777)
+}).listen(7778)
 
 
 handler.on('error', function (err) {
@@ -60,8 +60,8 @@ handler.on('push', function (event) {
 			// alternatively I could get the commit from the api,
 			// and check the parents. commit.parents.length
 			// will be more than 1 if it is a merge commit
-		} else if (commit.message.slice(0, 11) == "Fix GH issue #") {
-			commit.message = commit.message.slice(11)
+		} else if (commit.message.slice(0, 14) == "Fix GH issue #") {
+			commit.message = commit.message.slice(14)
 		}
 
 		var issues = commit.message.match(/#\d+(?=\b|[^A-Za-z\d])/g)
