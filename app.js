@@ -54,6 +54,16 @@ handler.on('push', function (event) {
 	var commits = payload.commits
 	for (var c = commits.length - 1; c >= 0; c--) {
 		var commit = commits[c]
+
+		if (commit.message.slice(0, 20) == "Merge pull request #") {
+			commit.message = commit.message.slice(20)
+			// alternatively I could get the commit from the api,
+			// and check the parents. commit.parents.length
+			// will be more than 1 if it is a merge commit
+		} else if (commit.message.slice(0, 11) == "Fix GH issue #") {
+			commit.message = commit.message.slice(11)
+		}
+
 		var issues = commit.message.match(/#\d+(?=\b|[^A-Za-z\d])/g)
 		if (issues != null) {
 			// Build the comment
