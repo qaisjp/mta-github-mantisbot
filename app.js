@@ -68,6 +68,7 @@ handler.on('push', function (event) {
 		if (issues != null) {
 			// Build the comment
 			var comment = "Issues mentioned in this commit (" + commit.id + "):\n\n"
+			var issuesAdded = 0
 			for (var i = 0; i < issues.length; i++) {
 				var issue = issues[i].slice(1)
 				if (Number(issue) < 10) {
@@ -79,7 +80,12 @@ handler.on('push', function (event) {
 				}
 
 				comment += "* [Issue #" + issue + "](" + config.url + issue + ")\n"
+				issuesAdded += 1
 			};
+
+			if (issuesAdded == 0) {
+				return
+			}
 
 			// Blocking the user prevents the user from commenting on certain repositories. Not sure about the behaviour with organisations.
 			// comment += "\nIf you'd like to stop receiving notifications from me, please visit [my profile](https://github.com/mantisbot) and block me. Sorry!"
