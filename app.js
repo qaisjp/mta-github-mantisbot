@@ -69,9 +69,16 @@ handler.on('push', function (event) {
 			// Build the comment
 			var comment = "Issues mentioned in this commit (" + commit.id + "):\n\n"
 			for (var i = 0; i < issues.length; i++) {
-				if (issues.indexOf(issues[i]) == i) {
-					comment += "* [Issue " + issues[i] + "](" + config.url + issues[i].slice(1) + ")\n"
+				var issue = issues[i].slice(1)
+				if (Number(issue) < 10) {
+					continue
 				}
+
+				if (issues.indexOf(issues[i]) != i) {
+					continue
+				}
+
+				comment += "* [Issue #" + issue + "](" + config.url + issue + ")\n"
 			};
 
 			// Blocking the user prevents the user from commenting on certain repositories. Not sure about the behaviour with organisations.
