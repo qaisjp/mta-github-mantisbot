@@ -23,7 +23,7 @@ github.authenticate({
 // Handler for the webhook interface
 var createHandler = require('github-webhook-handler')
 var handler = createHandler({
-	path: '/webhook',
+	path: '/',
 	secret: config.secret
 })
 
@@ -31,9 +31,9 @@ var http = require('http')
 http.createServer(function (req, res) {
 	handler(req, res, function (err) {
 		res.statusCode = 404
-		res.end('no such location')
+		res.end('no such location ' + req.url)
 	})
-}).listen(7777)
+}).listen(7777, "127.0.0.1")
 
 
 handler.on('error', function (err) {
